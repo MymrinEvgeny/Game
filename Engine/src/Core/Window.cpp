@@ -8,32 +8,32 @@ namespace Engine::Core {
 		GLFWmonitor* monitor,
 		GLFWwindow* share) {
 		
-		Utils::Logger::log("Window(...)");
-		m_windowHandle = glfwCreateWindow(width, height, title, monitor, share);
-		assert(m_windowHandle);
+		Utils::Logger::log(Utils::Logger::Level::LOG, "Window::Window(...)");
+		m_handle = glfwCreateWindow(width, height, title, monitor, share);
+		assert(m_handle);
 
 	}
 
 
 	Window::~Window() {
-		Utils::Logger::log("~Window()");
-		glfwDestroyWindow(m_windowHandle);
+		Utils::Logger::log(Utils::Logger::Level::LOG, "Window::~Window()");
+		glfwDestroyWindow(m_handle);
 	}
 
 
 	// Methods
-	GLFWwindow* Window::getWindowHandle() const {
-		return m_windowHandle;
+	GLFWwindow* Window::getHandle() const {
+		return m_handle;
 	}
 
 
 	int Window::windowShouldClose() const {
-		return glfwWindowShouldClose(m_windowHandle);
+		return glfwWindowShouldClose(m_handle);
 	}
 		
 
 	void Window::update() const {
-		glfwSwapBuffers(m_windowHandle);
+		glfwSwapBuffers(m_handle);
 		glfwPollEvents();
 	}
 }

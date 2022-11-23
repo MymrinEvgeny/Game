@@ -11,9 +11,24 @@ add_library(${ENGINE_PROJECT_NAME} STATIC
 	src/Core/Window.cpp
 	src/Core/Application.hpp
 	src/Core/Application.cpp
+	src/Core/ResourceLoader.hpp
+	src/Core/ResourceLoader.cpp
+	
+	src/Graphics/Renderer.hpp
+	src/Graphics/Renderer.cpp
+	src/Graphics/ShaderProgram.hpp
+	src/Graphics/ShaderProgram.cpp
+	src/Graphics/VertexArray.hpp
+	src/Graphics/VertexArray.cpp
+	src/Graphics/ArrayBuffer.hpp
+	src/Graphics/ArrayBuffer.cpp
+	src/Graphics/Vertex.hpp
+	src/Graphics/Vertex.cpp
 	
 	src/Utils/Logger.hpp
 	src/Utils/Logger.cpp
+	src/Utils/FileSystem.hpp
+	src/Utils/FileSystem.cpp
 	
 )
 target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC src)

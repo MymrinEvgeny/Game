@@ -1,6 +1,8 @@
 #pragma once
 #include "Window.hpp"
+#include "ResourceLoader.hpp"
 
+#include <vector>
 #include <memory>
 
 namespace Engine::Core {
@@ -9,7 +11,23 @@ namespace Engine::Core {
 	private:
 
 		// Fields
+		std::vector<std::string> m_args;
+
+
 		std::unique_ptr<Window> m_window;
+
+
+		// Methods
+		virtual void windowSizeCallback(int width, int height) = 0;
+
+
+		virtual void init() = 0;
+
+
+		virtual void update() = 0;
+
+
+		virtual void render() = 0;
 
 
 	public:
@@ -18,16 +36,16 @@ namespace Engine::Core {
 		Application() = delete;
 
 
-		Application(int argc, char* argv[]);
-
-
 		Application(const Application&) = delete;
 
 
 		Application(Application&&) = delete;
 
 
-		~Application();
+		Application(int argc, char* argv[]);
+
+
+		virtual ~Application();
 
 
 		// Operators
@@ -36,27 +54,21 @@ namespace Engine::Core {
 
 		Application& operator=(Application&&) = delete;
 
-
 	
 		// Methods
 		void run();
 
 
-		void windowHints();
+		std::vector<std::string> getArgs() const;
 
 
-		void createWindow(int width, int height,
-			const char* title,
-			GLFWmonitor* monitor,
-			GLFWwindow* share);
-
-
-		void makeContextCurrent();
-
-
-		void mainloop();
+		double getTime() const;
 
 
 	};
+
+
+	std::unique_ptr<Engine::Core::Application> createApplication(int argc, char* argv[]);
+
 
 }

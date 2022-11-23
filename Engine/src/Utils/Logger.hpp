@@ -5,12 +5,17 @@
 namespace Engine::Utils {
 
 	class Logger {
-	private:
-		
 	public:
 
+		// Classes
+		enum class Level {
+			LOG,
+			ERR
+		};
+
+
 		// Methods
-		static void log(const std::string& message);
+		static void log(Level level, const std::string& message);
 
 
 	};

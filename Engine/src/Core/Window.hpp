@@ -12,7 +12,7 @@ namespace Engine::Core {
 	private:
 		
 		// Fields
-		GLFWwindow* m_windowHandle;
+		GLFWwindow* m_handle;
 
 
 	public:
@@ -44,7 +44,7 @@ namespace Engine::Core {
 
 
 		// Methods
-		GLFWwindow* getWindowHandle() const;
+		GLFWwindow* getHandle() const;
 
 
 		int windowShouldClose() const;

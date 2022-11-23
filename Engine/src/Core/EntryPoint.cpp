@@ -2,9 +2,7 @@
 
 int main(int argc, char* argv[]) {
 	
-	std::unique_ptr<Engine::Core::Application> app(
-		new Engine::Core::Application(argc, argv)
-	);
+	auto app = Engine::Core::createApplication(argc, argv);
 	app->run();
 
 	return 0;
