@@ -7,6 +7,7 @@
 #include "Graphics/VertexArray.hpp"
 #include "Graphics/ArrayBuffer.hpp"
 #include "Graphics/Vertex.hpp"
+#include "Graphics/ElementArrayBuffer.hpp"
 
 #include "Utils/Logger.hpp"
 #include "Utils/FileSystem.hpp"

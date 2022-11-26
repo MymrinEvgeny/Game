@@ -24,6 +24,8 @@ add_library(${ENGINE_PROJECT_NAME} STATIC
 	src/Graphics/ArrayBuffer.cpp
 	src/Graphics/Vertex.hpp
 	src/Graphics/Vertex.cpp
+	src/Graphics/ElementArrayBuffer.hpp
+	src/Graphics/ElementArrayBuffer.cpp
 	
 	src/Utils/Logger.hpp
 	src/Utils/Logger.cpp

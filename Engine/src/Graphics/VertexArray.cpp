@@ -18,8 +18,11 @@ namespace Engine::Graphics {
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(glm::vec3));
 		glEnableVertexAttribArray(1);
 
-		ArrayBuffer::unbind();
+		arrayBuffer->unbind();
 		unbind();
+
+		m_count = arrayBuffer->getCount();
+
 	}
 
 
@@ -30,6 +33,11 @@ namespace Engine::Graphics {
 
 
 	// Methods
+	size_t VertexArray::getCount() const {
+		return m_count;
+	}
+
+
 	void VertexArray::bind() const {
 		glBindVertexArray(m_handle);
 	}

@@ -6,13 +6,16 @@ class Game : public Engine::Core::Application {
 private:
 
 	// Fields
-	std::string executablePath;
+	std::string executableDirectory;
 
 
 	std::shared_ptr<Engine::Graphics::ShaderProgram> m_defaultShaderProgram;
 	
 
 	std::shared_ptr<Engine::Graphics::ArrayBuffer> m_arrayBuffer;
+
+
+	std::shared_ptr<Engine::Graphics::ElementArrayBuffer> m_elementArrayBuffer;
 
 
 	std::shared_ptr<Engine::Graphics::VertexArray> m_vertexArray;

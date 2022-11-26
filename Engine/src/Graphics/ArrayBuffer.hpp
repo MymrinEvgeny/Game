@@ -15,6 +15,9 @@ namespace Engine::Graphics {
 		GLuint m_handle;
 
 
+		size_t m_count;
+
+
 	public:
 
 		// Constructors
@@ -41,6 +44,9 @@ namespace Engine::Graphics {
 
 
 		// Methods
+		size_t getCount() const;
+
+
 		void bind() const;
 
 

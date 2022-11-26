@@ -33,14 +33,33 @@ namespace Engine::Graphics {
 	}
 
 
-	void Renderer::drawArrays(const std::shared_ptr<ShaderProgram> shaderProgram,
-		const std::shared_ptr<VertexArray> vertexArray, const Mode mode) {
+	void Renderer::drawArrays(
+		const std::shared_ptr<ShaderProgram> shaderProgram,
+		const std::shared_ptr<VertexArray> vertexArray,
+		const Mode mode) {
 
 		shaderProgram->use();
 		vertexArray->bind();
 		
-		glDrawArrays(static_cast<GLenum>(mode), 0, 3);
+		glDrawArrays(static_cast<GLenum>(mode), 0, vertexArray->getCount());
 
 	}
+
+
+	void Renderer::drawElements(
+		const std::shared_ptr<ShaderProgram> shaderProgram,
+		const std::shared_ptr<VertexArray> vertexArray,
+		const std::shared_ptr<ElementArrayBuffer> elementArrayBuffer,
+		const Mode mode) {
+
+		shaderProgram->use();
+		vertexArray->bind();
+		elementArrayBuffer->bind();
+
+		glDrawElements(static_cast<GLenum>(mode),
+			elementArrayBuffer->getCount(), GL_UNSIGNED_INT, (void*)0);
+
+	}
+
 
 }

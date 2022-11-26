@@ -1,6 +1,7 @@
 #pragma once
 #include "ShaderProgram.hpp"
 #include "VertexArray.hpp"
+#include "ElementArrayBuffer.hpp"
 #include "Utils/Logger.hpp"
 
 #include <glad/glad.h>
@@ -74,8 +75,17 @@ namespace Engine::Graphics {
 		static void clearStencil(GLint s);
 
 
-		static void drawArrays(const std::shared_ptr<ShaderProgram> shaderProgram, 
-			const std::shared_ptr<VertexArray> vertexArray, const Mode mode);
+		static void drawArrays(
+			const std::shared_ptr<ShaderProgram> shaderProgram, 
+			const std::shared_ptr<VertexArray> vertexArray,
+			const Mode mode);
+
+
+		static void drawElements(
+			const std::shared_ptr<ShaderProgram> shaderProgram,
+			const std::shared_ptr<VertexArray> vertexArray,
+			const std::shared_ptr<ElementArrayBuffer> elementArrayBuffer,
+			const Mode mode);
 
 
 	};
