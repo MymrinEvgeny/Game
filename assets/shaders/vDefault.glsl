@@ -2,24 +2,18 @@
 
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec3 color;
+layout(location = 2) in vec2 texCoord;
 
-uniform double uTime;
+uniform float uTime;
 
 out vec3 colorF;
-
-vec2 fun(vec2 pos) {
-	float alpha = float(uTime) / 2;
-	vec2 res = vec2(
-		cos(alpha) * pos.x - sin(alpha) * pos.y,
-		sin(alpha) * pos.x + cos(alpha) * pos.y
-	);
-	return res;
-}
+out vec2 texCoordF;
 
 void main() {
 	
 	colorF = color;
+	texCoordF = texCoord;
 	
-	gl_Position = vec4(fun(vec2(pos.x, pos.y)), pos.z, 1.0);
+	gl_Position = vec4(pos, 1.0);
 	
 }

@@ -2,6 +2,7 @@
 #include "Utils/Logger.hpp"
 
 #include <glm/vec3.hpp>
+#include <glm/vec2.hpp>
 
 namespace Engine::Graphics {
 
@@ -15,6 +16,9 @@ namespace Engine::Graphics {
 		glm::vec3 m_color;
 
 
+		glm::vec2 m_texCoord;
+
+		
 	public:
 
 		// Constructors
@@ -27,7 +31,7 @@ namespace Engine::Graphics {
 		Vertex(Vertex&& vertex) noexcept;
 
 
-		Vertex(const glm::vec3& pos, const glm::vec3& color);
+		Vertex(const glm::vec3& pos, const glm::vec3& color, const glm::vec2& texCoord);
 
 
 		~Vertex();

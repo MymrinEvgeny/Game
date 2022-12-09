@@ -21,6 +21,12 @@ private:
 	std::shared_ptr<Engine::Graphics::VertexArray> m_vertexArray;
 
 
+	std::shared_ptr<Engine::Graphics::Texture2D> m_texture2D_awesomeface;
+
+
+	std::shared_ptr<Engine::Graphics::Texture2D> m_texture2D_container;
+
+
 	// Methods
 	void windowSizeCallback(int width, int height) override;
 

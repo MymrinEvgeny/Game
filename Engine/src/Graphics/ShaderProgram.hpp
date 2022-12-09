@@ -55,7 +55,10 @@ namespace Engine::Graphics {
 		void use() const;
 
 
-		void setUniform1d(const std::string& uniformName, const double& value) const;
+		void setUniform1f(const std::string& uniformName, const GLfloat& value) const;
+
+
+		void setUniform1i(const std::string& uniformName, const GLint& value) const;
 
 
 	};

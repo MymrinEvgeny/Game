@@ -59,6 +59,10 @@ namespace Engine::Core {
 		assert(result);
 
 
+		// init DevIL
+		ilInit();
+
+
 	}
 
 

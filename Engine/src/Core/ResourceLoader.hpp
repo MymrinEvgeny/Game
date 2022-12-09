@@ -1,6 +1,9 @@
 #pragma once
-#include "Graphics/ShaderProgram.hpp"
+
 #include "Utils/FileSystem.hpp"
+#include "Graphics/ShaderProgram.hpp"
+#include "Graphics/Texture2D.hpp"
+#include "Graphics/Image.hpp"
 
 #include <memory>
 
@@ -37,6 +40,10 @@ namespace Engine::Core {
 		static std::shared_ptr<Graphics::ShaderProgram> loadShaderProgram(
 			const std::string& vertexShaderFilePath,
 			const std::string& fragmentShaderFilePath);
+
+
+		static std::shared_ptr<Graphics::Texture2D> loadTexture2D(
+			const std::string& filePath);
 
 
 	};

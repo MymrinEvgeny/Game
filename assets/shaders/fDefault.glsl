@@ -1,16 +1,20 @@
 #version 460 core
 
 in vec3 colorF;
+in vec2 texCoordF;
 
-uniform double uTime;
+uniform float uTime;
+uniform sampler2D TEXTURE0;
+uniform sampler2D TEXTURE1;
+uniform float interpolate;
 
 out vec4 outColor;
 
 void main() {
 
-	outColor = vec4(colorF.r + abs(sin(float(uTime))) / 1.1 - 0.3,
-					colorF.g + abs(sin(float(uTime))) / 1.1 - 0.3,
-					colorF.b + abs(sin(float(uTime))) / 1.1 - 0.3,
-					1.0f);
-					
+	outColor = mix(
+		texture(TEXTURE0, texCoordF),
+		texture(TEXTURE1, texCoordF),
+		interpolate);
+	
 }

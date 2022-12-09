@@ -18,6 +18,10 @@ namespace Engine::Graphics {
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(glm::vec3));
 		glEnableVertexAttribArray(1);
 
+		// texCoord attrib
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(2 * sizeof(glm::vec3)));
+		glEnableVertexAttribArray(2);
+
 		arrayBuffer->unbind();
 		unbind();
 

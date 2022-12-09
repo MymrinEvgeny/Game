@@ -93,9 +93,15 @@ namespace Engine::Graphics {
 	}
 
 
-	void ShaderProgram::setUniform1d(const std::string& uniformName,
-		const double& value) const {
-		glUniform1d(glGetUniformLocation(m_handle, uniformName.c_str()), value);
+	void ShaderProgram::setUniform1f(const std::string& uniformName,
+		const GLfloat& value) const {
+		glUniform1f(glGetUniformLocation(m_handle, uniformName.c_str()), value);
+	}
+
+
+	void ShaderProgram::setUniform1i(const std::string& uniformName,
+		const GLint& value) const {
+		glUniform1i(glGetUniformLocation(m_handle, uniformName.c_str()), value);
 	}
 
 

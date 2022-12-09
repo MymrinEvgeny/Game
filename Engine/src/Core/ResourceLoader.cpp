@@ -16,4 +16,16 @@ namespace Engine::Core {
 			vertexShaderSource, fragmentShaderSource);
 	}
 
+
+	std::shared_ptr<Graphics::Texture2D> ResourceLoader::loadTexture2D(
+		const std::string& filePath) {
+
+		std::shared_ptr<Graphics::Image> image =
+			std::make_shared<Graphics::Image>(filePath);
+
+		return std::make_shared<Graphics::Texture2D>(image);
+
+	}
+
+
 }
