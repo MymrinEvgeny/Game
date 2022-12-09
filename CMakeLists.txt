@@ -26,12 +26,3 @@ add_custom_command(TARGET ${GAME_PROJECT_NAME} POST_BUILD
                 ${CMAKE_CURRENT_SOURCE_DIR}/assets
                 $<TARGET_FILE_DIR:${GAME_PROJECT_NAME}>/assets)
 
-# set(CMAKE_SUPPRESS_REGENERATION ON)
-
-
-
-
-
-
-
-
