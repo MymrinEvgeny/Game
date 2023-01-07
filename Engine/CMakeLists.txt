@@ -14,6 +14,9 @@ add_library(${ENGINE_PROJECT_NAME} STATIC
 	src/Core/ResourceLoader.hpp
 	src/Core/ResourceLoader.cpp
 	
+	src/Entities/Camera.hpp
+	src/Entities/Camera.cpp
+	
 	src/Graphics/Renderer.hpp
 	src/Graphics/Renderer.cpp
 	src/Graphics/ShaderProgram.hpp

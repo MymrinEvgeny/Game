@@ -18,13 +18,19 @@ namespace Engine::Core {
 
 
 		// Methods
-		virtual void windowSizeCallback(int width, int height) = 0;
+		virtual void windowSizeCallback(int width, int height);
+
+
+		virtual void keyCallback(int key, int scancode, int action, int mods);
+
+
+		virtual void cursorPosCallback(double xpos, double ypos);
 
 
 		virtual void init() = 0;
 
 
-		virtual void update() = 0;
+		virtual void update(double delta) = 0;
 
 
 		virtual void render() = 0;
@@ -60,6 +66,9 @@ namespace Engine::Core {
 
 
 		std::vector<std::string> getArgs() const;
+
+
+		GLFWwindow* getWindowHandle() const;
 
 
 		double getTime() const;

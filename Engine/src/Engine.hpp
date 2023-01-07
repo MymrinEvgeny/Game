@@ -2,6 +2,8 @@
 #include "Core/Window.hpp"
 #include "Core/ResourceLoader.hpp"
 
+#include "Entities/Camera.hpp"
+
 #include "Graphics/Renderer.hpp"
 #include "Graphics/ShaderProgram.hpp"
 #include "Graphics/VertexArray.hpp"

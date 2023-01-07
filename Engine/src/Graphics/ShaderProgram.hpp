@@ -3,6 +3,8 @@
 #include "Utils/Logger.hpp"
 
 #include <glad/glad.h>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <string>
 
@@ -59,6 +61,9 @@ namespace Engine::Graphics {
 
 
 		void setUniform1i(const std::string& uniformName, const GLint& value) const;
+
+
+		void setUniformMatrix4fv(const std::string& uniformName, const glm::mat4& matrix);
 
 
 	};

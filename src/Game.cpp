@@ -11,6 +11,44 @@ void Game::windowSizeCallback(int width, int height) {
 }
 
 
+void Game::keyCallback(int key, int scancode, int action, int mods) {
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(getWindowHandle(), true);
+	}
+	if (key == GLFW_KEY_1 && action == GLFW_PRESS) {
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+		glfwSetWindowMonitor(getWindowHandle(), NULL,
+			vidmode->width / 2 - 640 / 2, vidmode->height / 2 - 480 / 2,
+			640, 480, GLFW_DONT_CARE);
+	}
+	if (key == GLFW_KEY_2 && action == GLFW_PRESS) {
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+		glfwSetWindowMonitor(getWindowHandle(), monitor,
+			0, 0, vidmode->width, vidmode->height, GLFW_DONT_CARE);
+	}
+
+}
+
+
+void Game::cursorPosCallback(double xpos, double ypos) {
+
+	float xOffset = xpos - lastX;
+	float yOffset = ypos - lastY;
+	lastX = xpos;
+	lastY = ypos;
+
+	float sensitivity = 0.03;
+	yaw += xOffset * sensitivity;
+	pitch += yOffset * sensitivity;
+
+	if (pitch > 89.0f) pitch = 89.0f;
+	if (pitch < -89.0f) pitch = -89.0f;
+
+}
+
+
 void Game::init() {
 	m_defaultShaderProgram = Engine::Core::ResourceLoader::loadShaderProgram(
 		executableDirectory + "assets\\shaders\\vDefault.glsl",
@@ -57,11 +95,51 @@ void Game::init() {
 	m_texture2D_container = Engine::Core::ResourceLoader::loadTexture2D(
 		executableDirectory + "assets\\textures\\container.jpg");
 
+	m_camera = std::make_shared<Engine::Entities::Camera>(
+		glm::vec3(0.0f, 0.0f, 0.0f));
+
+	m_camera->setAspectRatio(16.0f / 9.0f);
+
+	glfwSetInputMode(getWindowHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPos(getWindowHandle(), 0, 0);
+
 }
 
 
-void Game::update() {
+void Game::update(double delta) {
 	m_defaultShaderProgram->setUniform1f("uTime", getTime());
+
+	float speed = 10 * delta;
+	glm::vec3 pos = m_camera->getPosition();
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_W) == GLFW_PRESS) {
+		pos += m_camera->getFront() * speed;
+	}
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_A) == GLFW_PRESS) {
+		pos -= m_camera->getRight() * speed;
+	}
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_S) == GLFW_PRESS) {
+		pos -= m_camera->getFront() * speed;
+	}
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_D) == GLFW_PRESS) {
+		pos += m_camera->getRight() * speed;
+	}
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_SPACE) == GLFW_PRESS) {
+		pos += m_camera->getUp() * speed;
+	}
+	if (glfwGetKey(getWindowHandle(),GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+		pos -= m_camera->getUp() * speed;
+	}
+	m_camera->setPosition(pos);
+
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_Q) == GLFW_PRESS) {
+		roll -= 10 * speed;
+	}
+	if (glfwGetKey(getWindowHandle(), GLFW_KEY_E) == GLFW_PRESS) {
+		roll += 10 * speed;
+	}
+
+	m_camera->rotate(yaw, pitch, roll);
+
 }
 
 
@@ -70,13 +148,19 @@ void Game::render() {
 	Engine::Graphics::Renderer::clearColor(0.05f, 0.01f, 0.20f, 1.0f);
 	Engine::Graphics::Renderer::clear(Engine::Graphics::Renderer::Mask::COLOR_BUFFER_BIT);
 
+	glm::mat4 model(1.0f);
+	model = glm::translate(model, glm::vec3(0.0f, 0.0f, 1.0f));
+
+	m_defaultShaderProgram->setUniformMatrix4fv("model", model);
+	m_defaultShaderProgram->setUniformMatrix4fv("view", m_camera->getView());
+	m_defaultShaderProgram->setUniformMatrix4fv("projection", m_camera->getProjection());
+
 	m_texture2D_awesomeface->bind(Engine::Graphics::Texture2D::Texture::TEXTURE0);
 	m_texture2D_container->bind(Engine::Graphics::Texture2D::Texture::TEXTURE1);
 
 	Engine::Graphics::Renderer::drawElements(m_defaultShaderProgram,
 		m_vertexArray, m_elementArrayBuffer,
 		Engine::Graphics::Renderer::Mode::TRIANGLES);
-
 
 }
 

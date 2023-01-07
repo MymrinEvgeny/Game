@@ -105,4 +105,11 @@ namespace Engine::Graphics {
 	}
 
 
+	void ShaderProgram::setUniformMatrix4fv(const std::string& uniformName,
+		const glm::mat4& matrix) {
+		glUniformMatrix4fv(glGetUniformLocation(m_handle, uniformName.c_str()),
+			1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+
 }
